@@ -3,6 +3,7 @@ package com.employee.service.impl;
 import com.employee.dto.EmployeeRequestDTO;
 import com.employee.dto.EmployeeResponseDTO;
 import com.employee.entity.Employee;
+import com.employee.exception.ResourceNotFoundException;
 import com.employee.repository.EmployeeRepository;
 import com.employee.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,10 @@ import java.util.List;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository repository;
+
+    public EmployeeServiceImpl(EmployeeRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public EmployeeResponseDTO create(EmployeeRequestDTO dto) {
@@ -34,14 +39,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeResponseDTO getById(Long id) {
         Employee employee = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
         return mapToDTO(employee);
     }
 
     @Override
     public EmployeeResponseDTO update(Long id, EmployeeRequestDTO dto) {
         Employee employee = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Employee not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Employee not found with id: " + id));
 
         employee.setName(dto.getFirstName());
         employee.setLastname(dto.getLastName());
