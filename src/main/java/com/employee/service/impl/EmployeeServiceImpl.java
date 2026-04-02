@@ -18,9 +18,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository repository;
 
-    public EmployeeServiceImpl(EmployeeRepository repository) {
-        this.repository = repository;
-    }
 
     @Override
     public EmployeeResponseDTO create(EmployeeRequestDTO dto) {
