@@ -17,7 +17,7 @@ import java.io.IOException;
 public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 
     private final UserRepository userRepository;
-
+    private final JwtUtil jwtUtil;
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
                                         HttpServletResponse response,
@@ -34,6 +34,8 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
                         new User(null, email, "GOOGLE")
                 ));
 
-        response.getWriter().write("Login successful for: " + email);
+        String token = jwtUtil.generateToken(email);
+        response.setContentType("application/json");
+        response.getWriter().write("{\"token\": \"" + token + "\"}");
     }
 }
