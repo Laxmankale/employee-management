@@ -2,14 +2,14 @@
 
 A simple REST API built with **Spring Boot** to manage employees, featuring secure authentication using **Google OAuth2** and **JWT**.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 - **Backend:** Java 17, Spring Boot 3
 - **Database:** MySQL, Spring Data JPA
 - **Security:** Spring Security, Google OAuth2, JWT (JSON Web Tokens)
 
 ---
 
-## 🏗️ Architecture
+##  Architecture
 
 Here is a simple flow of how the authentication and API requests work:
 
@@ -24,7 +24,7 @@ graph TD
 
 ---
 
-## 🚀 How to Run Locally
+##  How to Run Locally
 
 ### 1. Database Setup
 Create an empty database named `EMP` in your local MySQL server:
